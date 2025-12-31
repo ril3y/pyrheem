@@ -48,11 +48,11 @@ Locations and Devices:
 ============================================================
 
 [Location 0] My Home
-  ID: a809ce0c-ff99-466d-9656-4291d8915d61
-  Address: Brookeville, MD
+  ID: abc12345-6789-def0-1234-567890abcdef
+  Address: Springfield, IL
 
   [Device 0] Electric Water Heater
-    Serial: 40-9F-38-6B-C7-72-704
+    Serial: XX-XX-XX-XX-XX-XX-XXX
     Setpoint: 120F (range: 110-130)
     Mode: Energy Saver
     Status: Running | Connected

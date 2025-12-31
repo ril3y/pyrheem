@@ -7,7 +7,7 @@ name = "pyrheem"
 version = "0.1.0"
 description = "Python library and CLI for controlling Rheem water heaters via the EcoNet API"
 readme = "README.md"
-license = {text = "MIT"}
+license = "MIT"
 authors = [
     {name = "Riley Porter", email = "rileyporter@gmail.com"}
 ]
@@ -15,7 +15,6 @@ keywords = ["rheem", "econet", "water heater", "iot", "smart home", "home automa
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
