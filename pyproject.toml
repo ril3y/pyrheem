@@ -7,7 +7,7 @@ name = "pyrheem"
 version = "0.1.0"
 description = "Python library and CLI for controlling Rheem water heaters via the EcoNet API"
 readme = "README.md"
-license = "MIT"
+license = {text = "MIT"}
 authors = [
     {name = "Riley Porter", email = "rileyporter@gmail.com"}
 ]
