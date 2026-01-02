@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyrheem"
-version = "0.1.0"
+version = "0.1.1"
 description = "Python library and CLI for controlling Rheem water heaters via the EcoNet API"
 readme = "README.md"
 license = {text = "MIT"}
@@ -40,8 +40,8 @@ dev = [
 rheem = "pyrheem.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/rileyporter/pyrheem"
-Issues = "https://github.com/rileyporter/pyrheem/issues"
+Homepage = "https://github.com/ril3y/pyrheem"
+Issues = "https://github.com/ril3y/pyrheem/issues"
 
 [tool.setuptools.packages.find]
 where = ["."]

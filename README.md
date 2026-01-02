@@ -13,7 +13,7 @@ pip install pyrheem
 ### From Source
 
 ```bash
-git clone https://github.com/rileyporter/pyrheem.git
+git clone https://github.com/ril3y/pyrheem.git
 cd pyrheem
 pip install -e .
 ```
