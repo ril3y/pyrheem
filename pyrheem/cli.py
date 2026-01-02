@@ -10,6 +10,7 @@ from typing import Optional
 # Load .env file
 try:
     from dotenv import load_dotenv
+
     load_dotenv(Path.cwd() / ".env")
     load_dotenv()
 except ImportError:
@@ -177,33 +178,21 @@ Examples:
 Environment variables (or use .env file):
   RHEEM_EMAIL     - Your Rheem account email
   RHEEM_PASSWORD  - Your Rheem account password
-        """
+        """,
     )
 
-    parser.add_argument("--email", default=os.environ.get("RHEEM_EMAIL"),
-                        help="Rheem account email")
-    parser.add_argument("--password", default=os.environ.get("RHEEM_PASSWORD"),
-                        help="Rheem account password")
-    parser.add_argument("--location", "-L", default="0",
-                        help="Location index or name (default: 0)")
-    parser.add_argument("--device", "-d", default="0",
-                        help="Device index, serial, or name (default: 0)")
-    parser.add_argument("--list", "-l", action="store_true",
-                        help="List all locations and devices")
-    parser.add_argument("--status", "-s", action="store_true",
-                        help="Get all device status as JSON")
-    parser.add_argument("--temp", "-t", type=int,
-                        help="Set temperature in Fahrenheit")
-    parser.add_argument("--mode", "-m", choices=["energy", "performance"],
-                        help="Set mode: energy or performance")
-    parser.add_argument("--enable", action="store_true",
-                        help="Enable the water heater")
-    parser.add_argument("--disable", action="store_true",
-                        help="Disable the water heater")
-    parser.add_argument("--quiet", "-q", action="store_true",
-                        help="Quiet mode (JSON output only)")
-    parser.add_argument("--interactive", "-i", action="store_true",
-                        help="Force interactive mode")
+    parser.add_argument("--email", default=os.environ.get("RHEEM_EMAIL"), help="Rheem account email")
+    parser.add_argument("--password", default=os.environ.get("RHEEM_PASSWORD"), help="Rheem account password")
+    parser.add_argument("--location", "-L", default="0", help="Location index or name (default: 0)")
+    parser.add_argument("--device", "-d", default="0", help="Device index, serial, or name (default: 0)")
+    parser.add_argument("--list", "-l", action="store_true", help="List all locations and devices")
+    parser.add_argument("--status", "-s", action="store_true", help="Get all device status as JSON")
+    parser.add_argument("--temp", "-t", type=int, help="Set temperature in Fahrenheit")
+    parser.add_argument("--mode", "-m", choices=["energy", "performance"], help="Set mode: energy or performance")
+    parser.add_argument("--enable", action="store_true", help="Enable the water heater")
+    parser.add_argument("--disable", action="store_true", help="Disable the water heater")
+    parser.add_argument("--quiet", "-q", action="store_true", help="Quiet mode (JSON output only)")
+    parser.add_argument("--interactive", "-i", action="store_true", help="Force interactive mode")
 
     args = parser.parse_args()
 
@@ -237,9 +226,7 @@ Environment variables (or use .env file):
         print_device_list(api)
 
     elif args.status:
-        output = {
-            "locations": [loc.to_dict() for loc in api.get_locations_list()]
-        }
+        output = {"locations": [loc.to_dict() for loc in api.get_locations_list()]}
         print(json.dumps(output, indent=2))
 
     elif args.temp or args.mode or args.enable or args.disable:

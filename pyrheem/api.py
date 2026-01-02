@@ -3,17 +3,19 @@
 import json
 import ssl
 import time
-from typing import Dict, List, Optional, Callable
+from typing import Callable, Dict, List, Optional
 
 import requests
 
-from .models import RheemSession, Location, WaterHeater
+from .models import Location, RheemSession, WaterHeater
 
 # Try to import paho-mqtt
 try:
     import paho.mqtt.client as mqtt
+
     try:
         from paho.mqtt.enums import CallbackAPIVersion
+
         PAHO_V2 = True
     except ImportError:
         PAHO_V2 = False
@@ -168,12 +170,7 @@ class RheemEcoNetAPI:
             location_name = loc_data.get("@LOCATION_NAME", loc_data.get("name", "Unknown"))
             location_info = loc_data.get("@LOCATION_INFO", "")
 
-            location = Location(
-                location_id=location_id,
-                name=location_name,
-                address=location_info,
-                devices=[]
-            )
+            location = Location(location_id=location_id, name=location_name, address=location_info, devices=[])
 
             equipment_list = loc_data.get("equipment", loc_data.get("equiptments", []))
 
@@ -185,7 +182,11 @@ class RheemEcoNetAPI:
                 serial = eq.get("serial_number", "")
                 device_name = eq.get("device_name", "")
                 display_name = eq.get("@NAME", {})
-                display_name = display_name.get("value", "Water Heater") if isinstance(display_name, dict) else str(display_name) or "Water Heater"
+                display_name = (
+                    display_name.get("value", "Water Heater")
+                    if isinstance(display_name, dict)
+                    else str(display_name) or "Water Heater"
+                )
 
                 setpoint_data = eq.get("@SETPOINT", {})
                 if isinstance(setpoint_data, dict):
@@ -222,7 +223,7 @@ class RheemEcoNetAPI:
                     running=eq.get("@RUNNING", ""),
                     connected=eq.get("@CONNECTED", False),
                     enabled=enabled,
-                    raw_data=eq
+                    raw_data=eq,
                 )
 
                 location.devices.append(wh)
@@ -329,9 +330,7 @@ class RheemEcoNetAPI:
         try:
             if PAHO_V2:
                 self.mqtt_client = mqtt.Client(
-                    callback_api_version=mqtt.CallbackAPIVersion.VERSION2,
-                    client_id=client_id,
-                    protocol=mqtt.MQTTv311
+                    callback_api_version=mqtt.CallbackAPIVersion.VERSION2, client_id=client_id, protocol=mqtt.MQTTv311
                 )
             else:
                 self.mqtt_client = mqtt.Client(client_id=client_id, protocol=mqtt.MQTTv311)
@@ -399,7 +398,7 @@ class RheemEcoNetAPI:
             "transactionId": transaction_id,
             "device_name": wh.device_name,
             "serial_number": wh.serial_number,
-            **kwargs
+            **kwargs,
         }
 
         topic = USER_DESIRED_TOPIC.format(account_id=self.session.account_id)

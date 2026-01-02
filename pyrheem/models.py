@@ -1,12 +1,13 @@
 """Data models for Rheem EcoNet API"""
 
 from dataclasses import dataclass, field
-from typing import Dict, List, Any
+from typing import Any, Dict, List
 
 
 @dataclass
 class RheemSession:
     """Session information for authenticated user"""
+
     user_token: str = ""
     user_id: str = ""
     account_id: str = ""
@@ -17,6 +18,7 @@ class RheemSession:
 @dataclass
 class Location:
     """A location (home) containing devices"""
+
     location_id: str
     name: str
     address: str
@@ -27,13 +29,14 @@ class Location:
             "location_id": self.location_id,
             "name": self.name,
             "address": self.address,
-            "devices": [d.to_dict() for d in self.devices]
+            "devices": [d.to_dict() for d in self.devices],
         }
 
 
 @dataclass
 class WaterHeater:
     """A Rheem water heater device"""
+
     serial_number: str
     device_name: str
     display_name: str

@@ -30,7 +30,7 @@ __version__ = "0.1.0"
 __author__ = "Riley Porter"
 
 from .api import RheemEcoNetAPI
-from .models import RheemSession, Location, WaterHeater
+from .models import Location, RheemSession, WaterHeater
 
 __all__ = [
     "RheemEcoNetAPI",
